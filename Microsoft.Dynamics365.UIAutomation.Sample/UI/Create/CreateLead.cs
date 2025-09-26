@@ -22,13 +22,14 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
             {
                 xrmApp.OnlineLogin.Login(_xrmUri, _username, _password, _mfaSecretKey);
 
-                xrmApp.Navigation.OpenApp(AppName.Sales);
+                //  xrmApp.Navigation.OpenApp(AppName.Sales);
+                //xrmApp.Navigation.OpenApp("Sales Hub");
 
-                xrmApp.Navigation.OpenSubArea("Sales", "Leads");
+                BrowserCommandResult<bool> browserCommandResult = xrmApp.Navigation.OpenSubArea("Sales", "Leads");
 
                 xrmApp.CommandBar.ClickCommand("New");
 
-                xrmApp.ThinkTime(5000);
+
 
                 xrmApp.Entity.SetValue("subject", TestSettings.GetRandomString(5,15));
                 xrmApp.Entity.SetValue("firstname", TestSettings.GetRandomString(5,10));

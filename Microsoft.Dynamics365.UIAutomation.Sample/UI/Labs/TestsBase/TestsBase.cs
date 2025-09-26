@@ -47,17 +47,32 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         {
             _testContext = TestContext;
 
-            _username = _testContext.Properties["OnlineUsername"].ToString().ToSecureString();
-            _password = _testContext.Properties["OnlinePassword"].ToString().ToSecureString();
-            _mfaSecretKey = _testContext.Properties["MfaSecretKey"].ToString().ToSecureString();
-            _xrmUri = new Uri(_testContext.Properties["OnlineCrmUrl"].ToString());
-            _framework = (BrowserFramework)Enum.Parse(typeof(BrowserFramework), _testContext.Properties["Framework"].ToString());
+            // _username = _testContext.Properties["OnlineUsername"].ToString().ToSecureString();
+            _username = "daisy.gomez@ascendion.com".ToSecureString(); ;// _testContext.Properties["OnlineUsername"].ToString().ToSecureString();
+            _password = "Vishwa@270692".ToSecureString();
+            _xrmUri = new Uri("https://org812e0186.crm.dynamics.com/");
+
+            //_xrmUri = "https://org812e0186.crm.dynamics.com/".ToSecureString();
+
+            //_mfaSecretKey = _testContext.Properties["MfaSecretKey"].ToString().ToSecureString();
+            _framework = BrowserFramework.Selenium; // (BrowserFramework)Enum.Parse(typeof(BrowserFramework), _testContext.Properties["Framework"].ToString());
             TestSettings.Options.BrowserFramework = _framework;
             TestSettings.SharedOptions.BrowserFramework = _framework;
-            _browserType = (BrowserType)Enum.Parse(typeof(BrowserType), _testContext.Properties["BrowserType"].ToString());
-            _azureKey = _testContext.Properties["AzureKey"].ToString();
-            _sessionId = _testContext.Properties["SessionId"].ToString() ?? Guid.NewGuid().ToString();
-            _driversPath = _testContext.Properties["DriversPath"].ToString();
+            _browserType = BrowserType.Chrome; // (BrowserType)Enum.Parse(typeof(BrowserType), _testContext.Properties["BrowserType"].ToString());
+            _azureKey = _testContext.Properties["AzureKey"]?.ToString();
+            _sessionId = _testContext.Properties["SessionId"]?.ToString() ?? Guid.NewGuid().ToString();
+            _driversPath = _testContext.Properties["DriversPath"]?.ToString();
+
+            // _password = _testContext.Properties["OnlinePassword"].ToString().ToSecureString();
+            // _mfaSecretKey = _testContext.Properties["MfaSecretKey"].ToString().ToSecureString();
+            // _xrmUri = new Uri(_testContext.Properties["OnlineCrmUrl"].ToString());
+            // _framework = (BrowserFramework)Enum.Parse(typeof(BrowserFramework), _testContext.Properties["Framework"].ToString());
+            //TestSettings.Options.BrowserFramework = _framework;
+            //TestSettings.SharedOptions.BrowserFramework = _framework;
+            //_browserType = (BrowserType)Enum.Parse(typeof(BrowserType), _testContext.Properties["BrowserType"].ToString());
+            //_azureKey = _testContext.Properties["AzureKey"].ToString();
+            //_sessionId = _testContext.Properties["SessionId"].ToString() ?? Guid.NewGuid().ToString();
+            //_driversPath = _testContext.Properties["DriversPath"].ToString();
             if (!String.IsNullOrEmpty(_driversPath))
             {
                 TestSettings.SharedOptions.DriversPath = _driversPath;

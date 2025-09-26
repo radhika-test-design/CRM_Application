@@ -20,7 +20,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         public void NotUsing_TheBaseClass()
         {
             var options = TestSettings.Options;
-            options.PrivateMode = true;
+            //options.PrivateMode = false;
             options.PerformanceMode = false; // <= you can also change other settings here, for this tests only
 
             var client = new WebClient(options);
@@ -42,7 +42,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         public void NotUsing_TheBaseClass_GoToCases_InCustomerServicesApp()
         {
             var options = TestSettings.Options;
-            options.PrivateMode = false; // <= this test is not in private mode, ignore config
+           // options.PrivateMode = false; // <= this test is not in private mode, ignore config
 
             var client = new WebClient(options);
             using (var xrmApp = new XrmApp(client))

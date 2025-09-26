@@ -13,14 +13,15 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
     public class CreateCase : TestsBase
     {
 
-        [TestCategory("Entity")]
-        [TestMethod]
+       [TestCategory("Entity")]
+       [TestMethod]
         public void TestCreateCase()
         {
             var client = new WebClient(TestSettings.Options);
             using (var xrmApp = new XrmApp(client))
             {
                 xrmApp.OnlineLogin.Login(_xrmUri, _username, _password, _mfaSecretKey);
+                xrmApp.ThinkTime(4000);
 
                 xrmApp.Navigation.OpenApp(AppName.CustomerService);
 

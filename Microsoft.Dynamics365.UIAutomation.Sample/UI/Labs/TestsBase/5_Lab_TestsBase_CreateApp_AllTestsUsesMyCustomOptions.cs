@@ -9,7 +9,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         public override void SetOptions(BrowserOptions options)
         {
             // <= test in this class use my custom options
-            options.PrivateMode = false;
+           // options.PrivateMode = false;
             options.PerformanceMode = false;
         }
 

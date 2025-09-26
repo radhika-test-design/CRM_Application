@@ -34,8 +34,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         [TestMethod, ExpectedException(typeof(Exception), AllowDerivedTypes = true)]
         public void UseTheBaseClass_GoToCases_InCustomerServicesApp()
         {
-            var options = TestSettings.Options;
-            options.PrivateMode = false; // <= this test is not in private mode, ignore config
+           var options = TestSettings.Options;
+           // options.PrivateMode = false; // <= this test is not in private mode, ignore config
 
             var client = new WebClient(options);
             using (var xrmApp = new XrmApp(client))

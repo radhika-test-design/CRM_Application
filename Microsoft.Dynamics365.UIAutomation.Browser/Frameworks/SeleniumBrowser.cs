@@ -244,13 +244,46 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
         #endregion
 
         #region SwitchFrame
-        public void SwitchToFrame(string locator, IElement? frameElement=null)
+        //public void SwitchToFrame(string locator, IElement? frameElement=null)
+        //{
+        //    Trace.TraceInformation("[Selenium] Browser switch frame initated. XPath: " + locator);
+        //    if (frameElement != null)
+        //    {
+
+
+        //        _driver.SwitchTo().Frame(_driver.FindElement(By.XPath(frameElement.Locator)));
+        //        return;
+        //    }
+        //    if (int.TryParse(locator, out var frame))
+        //    {
+        //        if (frame == 0) { _driver.SwitchTo().ParentFrame(); }
+        //        else _driver.SwitchTo().Frame(frame);
+        //    }
+        //    else
+        //    {
+        //        try
+        //        {
+        //            _driver.WaitUntilAvailable(By.Id(locator));
+        //            _driver.SwitchTo().Frame(locator);
+        //        }
+        //        catch (Exception)
+        //        {
+
+        //            throw;
+        //        }
+
+        //    }
+
+        //_driver.WaitForTransaction();
+
+        //}
+        public void SwitchToFrame(string locator, IElement? frameElement = null)
         {
             Trace.TraceInformation("[Selenium] Browser switch frame initated. XPath: " + locator);
             if (frameElement != null)
             {
-                
-                
+
+
                 _driver.SwitchTo().Frame(_driver.FindElement(By.XPath(frameElement.Locator)));
                 return;
             }
@@ -273,12 +306,13 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
                 }
 
             }
-            //_driver.WaitForTransaction();
-            
         }
+
+
+
         #endregion
 
-        #region TakeScreenshot
+            #region TakeScreenshot
         public void TakeWindowScreenShot(string fileName, FileFormat fileFormat)
         {
             _driver.TakeScreenshot();

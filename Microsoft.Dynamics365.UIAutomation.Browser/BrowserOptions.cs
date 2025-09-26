@@ -47,7 +47,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
             this.DisableImplSidePainting = false;
             this.DisableDevShmUsage = false;
             this.DisableInfoBars = false;
-            this.Headless = true;
+            this.Headless = false;
             this.Kiosk = false;
             this.TestTypeBrowser = false;
             this.CookieСontrolsMode = 0;
@@ -61,7 +61,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
         public string DriversPath { get; set; }
         public string ConfigPath { get; set; }
         public string DownloadsPath { get; set; }
-        public bool PrivateMode { get; set; }
+       // public bool PrivateMode { get; set; }
         public bool CleanSession { get; set; }
         public TimeSpan PageLoadTimeout { get; set; }
         public TimeSpan CommandTimeout { get; set; } = TimeSpan.FromMinutes(20);
@@ -132,10 +132,10 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
                 options.AddArgument("--start-maximized");
             }
 
-            if (this.PrivateMode)
-            {
-                options.AddArgument("--incognito");
-            }
+            //if (this.PrivateMode)
+            //{
+            //    options.AddArgument("--incognito");
+            //}
 
             if (this.Headless)
             {
@@ -231,31 +231,32 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
         {
 
             // For IE, TabProcGrowth must be set to 0 if we want to initiate through
-            // the CreateProcess API, which is required for InPrivate mode.
-            if (this.PrivateMode)
-            {
-                var value = Registry.GetValue(Constants.Browser.IESettingsRegistryHive, Constants.Browser.IESettingsTabProcGrowthKey, null);
+             //the CreateProcess API, which is required for InPrivate mode.
+            //if (this.PrivateMode)
+           // {
+            //    var value = Registry.GetValue(Constants.Browser.IESettingsRegistryHive, Constants.Browser.IESettingsTabProcGrowthKey, null);
 
-                if (value == null || value.ToString() != "0")
-                {
-                    Registry.SetValue(Constants.Browser.IESettingsRegistryHive, Constants.Browser.IESettingsTabProcGrowthKey, 0);
-                }
+            //        if (value == null || value.ToString() != "0")
+             //       {
+              //          Registry.SetValue(Constants.Browser.IESettingsRegistryHive, Constants.Browser.IESettingsTabProcGrowthKey, 0);
+             //      }
+              //  }
+
+                var options = new InternetExplorerOptions()
+               {
+                    IntroduceInstabilityByIgnoringProtectedModeSettings = true,
+                    EnsureCleanSession = this.CleanSession,
+                    //ForceCreateProcessApi = this.PrivateMode,
+                    //page = InternetExplorerPageLoadStrategy.Eager,
+                    IgnoreZoomLevel = true,
+                   EnablePersistentHover = true,
+                   //BrowserCommandLineArguments = this.PrivateMode ? "-private" : ""
+
+               };
+
+                return options;
             }
-
-            var options = new InternetExplorerOptions()
-            {
-                IntroduceInstabilityByIgnoringProtectedModeSettings = true,
-                EnsureCleanSession = this.CleanSession,
-                ForceCreateProcessApi = this.PrivateMode,
-                //page = InternetExplorerPageLoadStrategy.Eager,
-                IgnoreZoomLevel = true,
-                EnablePersistentHover = true,
-                BrowserCommandLineArguments = this.PrivateMode ? "-private" : ""
-
-            };
-
-            return options;
-        }
+        
 
         public virtual FirefoxOptions ToFireFox()
         {
@@ -281,7 +282,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
             {
                 PageLoadStrategy = PageLoadStrategy.Normal
             };
-            if (PrivateMode) options.AddArgument("inprivate");
+           // if (PrivateMode) options.AddArgument("inprivate");
             return options;
         }
     }

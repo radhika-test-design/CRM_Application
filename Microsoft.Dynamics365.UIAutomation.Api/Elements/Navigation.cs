@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 using Microsoft.Dynamics365.UIAutomation.Browser;
+using OpenQA.Selenium;
 using System.Collections.Specialized;
 using System.Diagnostics;
 using System.Runtime.CompilerServices;
@@ -294,6 +295,49 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
                 return true;
             });
         }
+        //public BrowserCommandResult<bool> OpenApp(string appName, int thinkTime = Constants.DefaultThinkTime)
+        //{
+        //    Trace.TraceInformation("Navigation.OpenApp initiated for app " + appName);
+        //    _client.ThinkTime(thinkTime);
+
+        //    return _client.Execute(_client.GetOptions($"Open App {appName}"), driver =>
+        //    {
+        //        driver.Wait(PageEvent.Load);
+        //       // driver.SwitchToFrame("0"); //Selenium
+
+        //        //driver.SwitchToFrame("AppLandingPage"); //Playwright
+
+        //        var query = GetUrlQueryParams(driver.Url);
+        //        bool isSomeAppOpen = query.Get("appid") != null || query.Get("app") != null;
+
+        //        bool success = false;
+        //        if (!isSomeAppOpen)
+        //            success = TryToClickInAppTile(appName, driver);
+        //        else
+        //            success = TryOpenAppFromMenu(driver, appName, _client.ElementMapper.NavigationReference.AppMenuButton) ||
+        //                      TryOpenAppFromMenu(driver, appName, _client.ElementMapper.NavigationReference.WebAppMenuButton);
+
+        //        if (!success)
+        //            throw new InvalidOperationException($"App Name {appName} not found.");
+
+        //        OnlineLogin login = new OnlineLogin(_client);
+        //        login.InitializeModes();
+
+        //        // Wait for app page IElements to be visible (shell and sitemapLauncherButton)
+        //        var shell = driver.WaitUntilAvailable(_client.ElementMapper.ApplicationReference.Shell);
+        //        var sitemapLauncherButton = driver.WaitUntilAvailable(_client.ElementMapper.NavigationReference.SiteMapLauncherButton);
+
+        //        success = shell != null && sitemapLauncherButton != null;
+
+        //        if (!success)
+        //            throw new InvalidOperationException($"App '{appName}' was found but app page was not loaded.");
+
+        //        _client.CloseTeachingBubbles(driver);
+
+        //        return true;
+        //    });
+        //}
+
         public BrowserCommandResult<bool> OpenApp(string appName, int thinkTime = Constants.DefaultThinkTime)
         {
             Trace.TraceInformation("Navigation.OpenApp initiated for app " + appName);
@@ -302,8 +346,9 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
             return _client.Execute(_client.GetOptions($"Open App {appName}"), driver =>
             {
                 driver.Wait(PageEvent.Load);
-                //driver.SwitchToFrame("0"); //Selenium
-                driver.SwitchToFrame("AppLandingPage"); //Playwright
+                // driver.SwitchToFrame("0"); //Selenium
+
+                //driver.SwitchToFrame("AppLandingPage"); //Playwright
 
                 var query = GetUrlQueryParams(driver.Url);
                 bool isSomeAppOpen = query.Get("appid") != null || query.Get("app") != null;
@@ -335,6 +380,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
                 return true;
             });
         }
+
         public BrowserCommandResult<bool> OpenArea(string subarea)
         {
             return _client.Execute(_client.GetOptions("Open Unified Interface Area"), driver =>
@@ -823,6 +869,14 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
             Trace.TraceInformation("Entered Navigation.TryToClickInAppTile");
             string message = "Frame AppLandingPage is not loaded.";
             driver.SwitchToFrame("AppLandingPage");
+            //try
+            //{
+            //    driver.SwitchToFrame("AppLandingPage");
+            //}
+            //catch (Exception)
+            //{
+            //    Console.WriteLine("AppLandingPage frame not present, continuing without it.");
+            //}
 
 
             var xpathToAppContainer = _client.ElementMapper.NavigationReference.AppContainer;

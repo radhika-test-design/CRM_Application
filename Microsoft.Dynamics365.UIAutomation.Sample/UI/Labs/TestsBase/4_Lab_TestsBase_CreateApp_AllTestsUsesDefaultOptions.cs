@@ -25,7 +25,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         public void UseTheBaseClass_GoToCases_InCustomerServicesApp()
         {
             var options = TestSettings.Options;
-            options.PrivateMode = false; // <= this test still using my custom options
+            //options.PrivateMode = false; // <= this test still using my custom options
 
             using (var xrmApp = CreateApp(options))
             {
