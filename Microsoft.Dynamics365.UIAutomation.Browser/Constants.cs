@@ -10,7 +10,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Browser
         /// <summary>
         /// The default amount of time to wait for an operation to complete by the Selenium driver.
         /// </summary>
-        public static readonly TimeSpan DefaultTimeout = new TimeSpan(0, 0, 30);
+        public static readonly TimeSpan DefaultTimeout = new TimeSpan(0, 0, 60);
 
         /// <summary>
         /// The default amount of time to wait between retrying command executions if they fail.

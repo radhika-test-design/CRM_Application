@@ -594,6 +594,11 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
             });
         }
 
+        internal string GetActiveStage()
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
     }
 }

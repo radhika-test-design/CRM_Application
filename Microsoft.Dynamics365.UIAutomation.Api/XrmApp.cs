@@ -12,6 +12,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
     public class XrmApp : IDisposable
     {
         internal WebClient _client;
+        public readonly object WebClient;
 
         public List<ICommandResult> CommandResults => _client.CommandResults;
 

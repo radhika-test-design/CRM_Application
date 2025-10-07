@@ -14,6 +14,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
         public static string LookupField = "primarycontactid";
         public static string LookupName = "Nancy Anderson (sample)";
         private static readonly string Type = "Chrome";
+       // private static readonly string XrmUri = "https://org812e0186.crm.dynamics.com/main.aspx?appid=4c3b67a9-c58b-f011-b4cb-6045bd04a9b1&forceUCI=1&newWindow=true&pagetype=entitylist&etn=lead&viewid=00000000-0000-0000-00aa-000010001005&viewType=1039";
         private static readonly string Framework = "Other";
         private static readonly string RemoteType = "Chrome";
         private static readonly string RemoteHubServerURL = String.Empty;
@@ -34,10 +35,11 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
             Headless = false,
             Kiosk = false,
             UserAgent = false,
-            DefaultThinkTime = 2000,
+            DefaultThinkTime = 6000,
             RemoteBrowserType = (BrowserType)Enum.Parse(typeof(BrowserType), RemoteType),
             RemoteHubServer = (!String.IsNullOrEmpty(RemoteHubServerURL)) ? new Uri(RemoteHubServerURL) : null,
             TestMode = true,
+            //XrmUri = "https://org812e0186.crm.dynamics.com/main.aspx?appid=4c3b67a9-c58b-f011-b4cb-6045bd04a9b1&forceUCI=1&newWindow=true&pagetype=entitylist&etn=lead&viewid=00000000-0000-0000-00aa-000010001005&viewType=1039",
             PerformanceMode = false,
             ConfigPath = Path.IsPathRooted(ConfigPath) ? ConfigPath : Path.Combine(Directory.GetCurrentDirectory(), ConfigPath),
             DriversPath = Path.IsPathRooted(DriversPath) ? DriversPath : Path.Combine(Directory.GetCurrentDirectory(), DriversPath), 

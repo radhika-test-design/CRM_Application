@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT license.
 using Microsoft.Dynamics365.UIAutomation.Browser;
+using Microsoft.Dynamics365.UIAutomation.Api.UCI;
 using OpenQA.Selenium;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -111,6 +112,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
         #endregion
         private readonly WebClient _client;
         private InteractiveBrowser _browser;
+        private XrmApp xrmApp = new XrmApp(driver);
+        private static WebClient driver;
         #region public
         public Navigation(WebClient client)
         {
@@ -893,6 +896,34 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
 
             return success;
         }
+
+        //public string GetActiveStageName()
+        //{
+        //    var activeStage = xrmApp.BusinessProcessFlow.GetActiveStage();
+        //    return activeStage;
+        //}
+
+        public string GetCurrentActiveStage(XrmApp xrmApp)
+        {
+            var stageElement = xrmApp.WebClient.FindElement(By.XPath("//div[@aria-label='Business Process Flow']//div[contains(@id,'stageTitle')]"));
+            return stageElement?.Text ?? string.Empty;
+        }
+
+        //public void OpenUrl(string relativeUrl)
+        //{
+        //    // Build the full URL (CRM base + relative URL)
+        //    // string url = $"{TestSettings.XrmUri}/{relativeUrl}";
+
+        //    // Use EasyRepro's built-in OpenUrl
+        //    // Call helper with entity grid URL
+        //    if (string.IsNullOrEmpty(relativeUrl)) { return; }
+
+        //    // Verify
+        //    Assert.IsTrue(xrmApp.Entity.getSubTitle().Contains("Leads"));
+        //}
+
+
+
         #endregion
     }
 }
