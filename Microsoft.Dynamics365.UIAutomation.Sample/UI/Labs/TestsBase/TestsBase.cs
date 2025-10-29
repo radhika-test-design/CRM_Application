@@ -48,8 +48,8 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
             _testContext = TestContext;
 
             // _username = _testContext.Properties["OnlineUsername"].ToString().ToSecureString();
-            _username = "radhika.veeravalli@ascendion.com".ToSecureString(); ;// _testContext.Properties["OnlineUsername"].ToString().ToSecureString();
-            _password = "Mynewtesla@123".ToSecureString();
+            _username = "".ToSecureString(); ;// _testContext.Properties["OnlineUsername"].ToString().ToSecureString();
+            _password = "".ToSecureString();
             _xrmUri = new Uri("https://org03d0bcf3.crm.dynamics.com/");
 
             //_xrmUri = "https://org812e0186.crm.dynamics.com/".ToSecureString();

@@ -30,7 +30,7 @@ namespace Microsoft.Dynamics365.UIAutomation.Sample
 
                 //string leadUrl = $"{TestSettings.XrmUri}/main.aspx?appid=appid=4c3b67a9-c58b-f011-b4cb-6045bd04a9b1&pagetype=control&controlName=MscrmControls.AcceleratedSales.AnchorShellControl";
                 xrmApp.ThinkTime(5000);
-                xrmApp.Navigation.OpenApp("Sales Hub");
+               // xrmApp.Navigation.OpenApp("Sales Hub");
                 //xrmApp.Navigation.OpenUrl(new Uri($"{TestSettings.XrmUri}/main.aspx?appid=appid=4c3b67a9-c58b-f011-b4cb-6045bd04a9b1&pagetype=control&controlName=MscrmControls.AcceleratedSales.AnchorShellControl"));
                 
                // driver.Navigate().GoToUrl("https://org812e0186.crm.dynamics.com/main.aspx?appid=4c3b67a9-c58b-f011-b4cb-6045bd04a9b1&forceUCI=1&newWindow=true&pagetype=entitylist&etn=lead&viewid=00000000-0000-0000-00aa-000010001005&viewType=1039");

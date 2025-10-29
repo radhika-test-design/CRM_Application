@@ -897,32 +897,27 @@ namespace Microsoft.Dynamics365.UIAutomation.Api
             return success;
         }
 
-        //public string GetActiveStageName()
+
+
+        //public string GetCurrentActiveStage(XrmApp xrmApp)
         //{
-        //    var activeStage = xrmApp.BusinessProcessFlow.GetActiveStage();
-        //    return activeStage;
+        //    var stageElement = xrmApp.WebClient.FindElement(By.XPath("//div[@aria-label='Business Process Flow']//div[contains(@id,'stageTitle')]"));
+        //    return stageElement?.Text ?? string.Empty;
         //}
 
         public string GetCurrentActiveStage(XrmApp xrmApp)
         {
-            var stageElement = xrmApp.WebClient.FindElement(By.XPath("//div[@aria-label='Business Process Flow']//div[contains(@id,'stageTitle')]"));
-            return stageElement?.Text ?? string.Empty;
+            var stage = xrmApp.BusinessProcessFlow.GetActiveStage();
+
+            // Handles both cases: string or BusinessProcessStage object
+            return stage switch
+            {
+                string stageName => stageName,
+                var obj when obj?.GetType().GetProperty("Name") != null =>
+                    obj.GetType().GetProperty("Name")?.GetValue(obj)?.ToString() ?? string.Empty,
+                _ => string.Empty
+            };
         }
-
-        //public void OpenUrl(string relativeUrl)
-        //{
-        //    // Build the full URL (CRM base + relative URL)
-        //    // string url = $"{TestSettings.XrmUri}/{relativeUrl}";
-
-        //    // Use EasyRepro's built-in OpenUrl
-        //    // Call helper with entity grid URL
-        //    if (string.IsNullOrEmpty(relativeUrl)) { return; }
-
-        //    // Verify
-        //    Assert.IsTrue(xrmApp.Entity.getSubTitle().Contains("Leads"));
-        //}
-
-
 
         #endregion
     }
